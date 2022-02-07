@@ -1,6 +1,6 @@
 FROM node:14
 
-RUN RUN export DEBIAN_FRONTEND=noninteractive 
+RUN export DEBIAN_FRONTEND=noninteractive 
 
 RUN apt-get update \
     && apt-get install -y libaio1 \
