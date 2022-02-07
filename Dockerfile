@@ -32,4 +32,4 @@ RUN echo '/opt/oracle/instantclient/' | tee -a /etc/ld.so.conf.d/oracle_instant_
 
 RUN npm install nodemon -g --prefer-online
 
-RUN pm2 -v
+RUN nodemon -v
