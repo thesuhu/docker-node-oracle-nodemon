@@ -43,7 +43,7 @@ docker run -d -p 81:3000 -v <host directory>:/usr/src/myapp --name <container na
 Install package using npm in container.
 
 ```
-docker exec -it <container name>
+docker exec -it <container name> /bin/sh
 
 # npm i
 # exit
