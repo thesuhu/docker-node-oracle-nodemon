@@ -1,6 +1,7 @@
 FROM node:14
 
-# install oracle client
+RUN RUN export DEBIAN_FRONTEND=noninteractive 
+
 RUN apt-get update \
     && apt-get install -y libaio1 \
     && apt-get install -y build-essential \
@@ -8,6 +9,7 @@ RUN apt-get update \
     && apt-get install -y curl \
     && apt-get install -y apt-utils
 
+# install oracle client
 RUN mkdir -p opt/oracle
 ADD ./oracle/linux/ .
 
