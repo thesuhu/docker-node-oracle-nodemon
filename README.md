@@ -25,6 +25,11 @@ FROM thesuhu/docker-node-oracle-nodemon:14
 
 RUN mkdir -p /usr/src/myapp
 WORKDIR /usr/src/myapp
+
+COPY <host directory>/. .
+
+RUN npm i --verbose
+
 CMD ["nodemon", "bin/www"]
 ```
 
@@ -37,16 +42,7 @@ docker build -t <image name> .
 Then create container with mount bind to the host project directory.
 
 ```
-docker run -d -p 81:3000 -v <host directory>:/usr/src/myapp --name <container name> <image name>
-```
-
-Install package using npm in container.
-
-```
-docker exec -it <container name> /bin/sh
-
-# npm i
-# exit
+docker run -d -p 3000:3000 -v <host directory>:/usr/src/myapp --name <container name> <image name>
 ```
 
 The application will be running well and automatically restart every time there is a change in the host directory
