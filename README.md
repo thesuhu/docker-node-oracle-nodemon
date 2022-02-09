@@ -30,7 +30,7 @@ COPY <host directory>/. .
 
 RUN npm i --verbose
 
-CMD ["nodemon", "bin/www"]
+CMD npm run dev
 ```
 
 Build the Dockerfile.
