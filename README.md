@@ -16,6 +16,14 @@ Specify the Node.js version you will use in the above *{VERSION}*. Node.js versi
 
 ## Example
 
+Don't forget to create `.dockerignore` file if using `COPY . .` command.
+
+```
+<host directory>/node_modules
+<host directory>/.git
+<host directory>/.gitignore
+```
+
 Create Dockerfile as you need.
 
 ```
@@ -24,9 +32,11 @@ FROM thesuhu/docker-node-oracle-nodemon:14
 RUN mkdir -p /usr/src/myapp
 WORKDIR /usr/src/myapp
 
-COPY <host directory>/. .
+COPY <host directory>/package*.json ./
 
 RUN npm i --verbose
+
+COPY <host directory>/. .
 
 CMD npm run dev
 ```
