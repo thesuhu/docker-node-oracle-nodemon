@@ -6,54 +6,21 @@ Docker images used to create containers ready with Node.js, Oracle Client and No
 
 ## Usage
 
-Within your Dockerfile:
+Just run the following command to run the container:
 
 ```
-FROM thesuhu/docker-node-oracle-nodemon:{VERSION}
+docker run -d -t -p <host port>:<your app port> -v <your app host dir>:/usr/src/myapp --name <your container name> thesuhu/docker-node-oracle-nodemon:14
 ```
 
-Specify the Node.js version you will use in the above *{VERSION}*. Node.js version 14 or above is available.
+Specify the Node.js version you will use in the above *{VERSION}*. Node.js version 14 is available.
 
 ## Example
 
-Don't forget to create `.dockerignore` file if using `COPY . .` command.
-
 ```
-<host directory>/node_modules
-<host directory>/.git
-<host directory>/.gitignore
+docker run -d -t -p 3000:3000 -v /home/thesuhu/helloworld:/usr/src/myapp --name backend thesuhu/docker-node-oracle-nodemon:14
 ```
 
-Create Dockerfile as you need.
-
-```
-FROM thesuhu/docker-node-oracle-nodemon:14
-
-RUN mkdir -p /usr/src/myapp
-WORKDIR /usr/src/myapp
-
-COPY <host directory>/package*.json ./
-
-RUN npm i --verbose
-
-COPY <host directory>/. .
-
-CMD npm run dev
-```
-
-Build the Dockerfile.
-
-```
-docker build -t <image name> .
-```
-
-Then create container with mount bind to the host project directory.
-
-```
-docker run -d -p 3000:3000 -v <host directory>:/usr/src/myapp --name <container name> <image name>
-```
-
-The application will be running well and automatically restart every time there is a change in the host directory
+Once the container is running, open a terminal inside the container and run `npm i`. Finally, use `nodemon` to start your application. The application automatically restart every time there is a change in the host directory
 
 ## License
 
