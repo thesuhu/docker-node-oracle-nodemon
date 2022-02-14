@@ -12,8 +12,6 @@ Within your Dockerfile:
 FROM thesuhu/docker-node-oracle-nodemon:{VERSION}
 ```
 
-## Versions
-
 Specify the Node.js version you will use in the above *{VERSION}*. Node.js version 14 or above is available.
 
 ## Example
