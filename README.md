@@ -9,7 +9,7 @@ Docker images used to create containers ready with Node.js, Oracle Client and No
 Just run the following command to run the container:
 
 ```
-docker run -d -t -p <host port>:<your app port> -v <your app host dir>:/usr/src/myapp --name <your container name> thesuhu/docker-node-oracle-nodemon:14
+docker run -d -t -p <host port>:<your app port> -v <your app host dir>:/usr/src/myapp --name <your container name> thesuhu/docker-node-oracle-nodemon:{VERSION}
 ```
 
 Specify the Node.js version you will use in the above *{VERSION}*. Node.js version 14 is available.
