@@ -22,7 +22,9 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag thesuhu/docker-node-oracle-nodemon:14
+      run: docker build . --file Dockerfile --tag thesuhu/docker-node-oracle-nodemon:22 --tag thesuhu/docker-node-oracle-nodemon:latest
      
     - name: Docker Push
-      run: docker push ${{secrets.DOCKER_USER}}/docker-node-oracle-nodemon:14
+      run: |
+        docker push ${{secrets.DOCKER_USER}}/docker-node-oracle-nodemon:22
+        docker push ${{secrets.DOCKER_USER}}/docker-node-oracle-nodemon:latest
