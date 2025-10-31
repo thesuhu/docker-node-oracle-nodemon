@@ -1,13 +1,17 @@
-FROM node:14
+FROM node:22
 
 RUN export DEBIAN_FRONTEND=noninteractive 
 
 RUN apt-get update \
-    && apt-get install -y libaio1 \
-    && apt-get install -y build-essential \
-    && apt-get install -y unzip \
-    && apt-get install -y curl \
-    && apt-get install -y apt-utils
+    && apt-get install -y --no-install-recommends \
+        libaio1 \
+        build-essential \
+        unzip \
+        curl \
+        apt-utils \
+        iputils-ping \
+        vim \
+    && rm -rf /var/lib/apt/lists/*
 
 # install oracle client
 RUN mkdir -p opt/oracle
@@ -30,7 +34,7 @@ ENV OCI_VERSION=12
 
 RUN echo '/opt/oracle/instantclient/' | tee -a /etc/ld.so.conf.d/oracle_instant_client.conf && ldconfig
 
-RUN npm install nodemon -g --prefer-online
+RUN npm install nodemon@3.1.10 -g --prefer-online
 
 RUN nodemon -v
 

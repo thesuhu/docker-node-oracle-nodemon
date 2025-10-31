@@ -9,15 +9,23 @@ Docker images used to create containers ready with Node.js, Oracle Client and No
 Just run the following command to run the container:
 
 ```
-docker run -d -t -p <host port>:<your app port> -v <your app host dir>:/usr/src/myapp --name <your container name> thesuhu/docker-node-oracle-nodemon:{VERSION}
+docker run -d -t -p <host port>:<your app port> -v <your app host dir>:/usr/src/myapp --name <your container name> thesuhu/docker-node-oracle-nodemon:{TAG}
 ```
 
-Specify the Node.js version you will use in the above *{VERSION}*. Node.js version 14 is available.
+Specify the image tag you will use in the above *{TAG}*. Available tags and their Node / Nodemon details are listed below.
+
+| Image Tag | Node | Nodemon |
+|-----------|------:|---------|
+| latest    | v22.x (based on node:22) | installed at build time (unpinned) |
+| 22        | v22.x | installed at build time (unpinned) |
+| 14        | v14.x | v6.x (historical) |
+
+Note: historically, tag `22` previously pointed to Node v14 with nodemon v6.x.
 
 ## Example
 
 ```
-docker run -d -t -p 3000:3000 -v /home/thesuhu/helloworld:/usr/src/myapp --name backend thesuhu/docker-node-oracle-nodemon:14
+docker run -d -t -p 3000:3000 -v /home/thesuhu/helloworld:/usr/src/myapp --name backend thesuhu/docker-node-oracle-nodemon:22
 ```
 
 Once the container is running, open a terminal inside the container and run `npm i`. Finally, use `nodemon` to start your application. The application automatically restart every time there is a change in the host directory
